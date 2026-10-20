@@ -2,12 +2,15 @@ import React, { useState, useMemo } from 'react';
 import { PORTFOLIO_ITEMS } from '../data/studioData';
 import { PortfolioItem, ProjectCategory } from '../types';
 import { CaseStudyModal } from './CaseStudyModal';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface PortfolioSectionProps {
+  items?: PortfolioItem[];
   onSelectProjectForInquiry: (item: PortfolioItem) => void;
 }
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
+  items = PORTFOLIO_ITEMS,
   onSelectProjectForInquiry,
 }) => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
@@ -25,7 +28,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   ];
 
   const filteredItems = useMemo(() => {
-    return PORTFOLIO_ITEMS.filter((item) => {
+    return items.filter((item) => {
       const matchesCategory =
         activeCategory === 'all' || item.category === activeCategory;
       const matchesSearch =
@@ -37,7 +40,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [items, activeCategory, searchQuery]);
+
 
   return (
     <section id="portfolio-gallery" className="w-full py-16 lg:py-24">
@@ -179,7 +183,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                 >
                   {/* Image container */}
                   <div className="relative w-full rounded-2xl overflow-hidden bg-[#f8ebe6] border border-[#dac2b9]/50 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-1">
-                    <img
+                    <ImageWithFallback
                       alt={item.title}
                       src={item.imageUrl}
                       loading="lazy"

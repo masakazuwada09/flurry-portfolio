@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { SERVICE_OPTIONS, STUDIO_META } from '../data/studioData';
-import { AppointmentInquiry } from '../types';
+import { AppointmentInquiry, ServiceOption } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface BookingSectionProps {
+  contactBanner?: string;
+  services?: ServiceOption[];
   onAppointmentCreated: (appointment: AppointmentInquiry) => void;
   preselectedServiceId?: string | null;
 }
 
 export const BookingSection: React.FC<BookingSectionProps> = ({
+  contactBanner = STUDIO_META.contactBanner,
+  services = SERVICE_OPTIONS,
   onAppointmentCreated,
   preselectedServiceId,
 }) => {
@@ -36,9 +41,10 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
 
   // Calculate estimated investment
   const estimatedTotal = selectedServices.reduce((sum, serviceId) => {
-    const s = SERVICE_OPTIONS.find((item) => item.id === serviceId);
+    const s = services.find((item) => item.id === serviceId);
     return sum + (s ? s.basePrice : 0);
   }, 0);
+
 
   // Multi-service bundle discount (10% if 2+, 15% if 3+)
   const discountRate = selectedServices.length >= 3 ? 0.15 : selectedServices.length >= 2 ? 0.10 : 0;
@@ -77,12 +83,12 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
   return (
     <section id="booking-section" className="w-full py-16 lg:py-24 bg-[#fdf1ec] border-t border-[#dac2b9]/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Contact Banner Visual (Image 18) */}
+        {/* Contact Banner Visual */}
         <div className="w-full rounded-2xl overflow-hidden shadow-lg bg-[#fff8f6] border border-[#dac2b9]/50 mb-12">
-          <img
+          <ImageWithFallback
             alt="Let's Work Together - Flurrygraphy Design Studio Contact Banner"
             className="w-full h-auto object-cover max-h-[500px]"
-            src={STUDIO_META.contactBanner}
+            src={contactBanner}
             loading="lazy"
           />
         </div>
@@ -237,7 +243,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                    {SERVICE_OPTIONS.map((svc) => {
+                    {services.map((svc) => {
                       const isSelected = selectedServices.includes(svc.id);
                       return (
                         <button

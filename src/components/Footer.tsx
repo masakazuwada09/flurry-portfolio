@@ -3,15 +3,17 @@ import { STUDIO_META } from '../data/studioData';
 
 interface FooterProps {
   onOpenBooking: () => void;
+  onOpenAdmin: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenAdmin }) => {
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
 
   return (
     <footer className="w-full bg-[#fdf1ec] pt-16 pb-12 border-t border-[#dac2b9]/40">
@@ -101,6 +103,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               >
                 Certificates &amp; Honors
               </a>
+              <button
+                onClick={onOpenAdmin}
+                className="text-left font-semibold text-[#803d1d] hover:underline transition-colors flex items-center gap-1 cursor-pointer pt-1"
+              >
+                <span className="material-symbols-outlined text-[15px]">admin_panel_settings</span>
+                <span>Payload CRM / Admin (/admin)</span>
+              </button>
             </nav>
           </div>
 

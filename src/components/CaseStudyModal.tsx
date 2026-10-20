@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { PortfolioItem } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface CaseStudyModalProps {
   item: PortfolioItem | null;
   onClose: () => void;
   onInquireProject: (item: PortfolioItem) => void;
 }
+
 
 export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   item,
@@ -65,7 +67,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             onClick={() => setImageZoomed(!imageZoomed)}
             title="Click to toggle image magnification"
           >
-            <img
+            <ImageWithFallback
               src={item.imageUrl}
               alt={item.title}
               className="w-full h-auto object-cover max-h-[580px]"

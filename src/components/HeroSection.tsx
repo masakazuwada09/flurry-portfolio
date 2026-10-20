@@ -1,12 +1,16 @@
 import React from 'react';
-import { STUDIO_META, STUDIO_METRICS } from '../data/studioData';
+import { STUDIO_METRICS } from '../data/studioData';
+import { StudioMeta } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface HeroSectionProps {
+  studioMeta: StudioMeta;
   onBookAppointment: () => void;
   onExploreWorks: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
+  studioMeta,
   onBookAppointment,
   onExploreWorks,
 }) => {
@@ -21,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#f8ebe6] border border-[#dac2b9]/60 text-[#54433c] text-[11px] font-medium tracking-[0.18em] uppercase shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#803d1d] animate-pulse" />
-            <span>{STUDIO_META.name} • Creative Direction Atelier</span>
+            <span>{studioMeta.name} • Creative Direction Atelier</span>
           </div>
 
           <div className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.15em] text-[#54433c]">
@@ -41,13 +45,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Hero Main Visual Masterpiece (Image 17) */}
+        {/* Hero Main Visual Masterpiece */}
         <div className="relative w-full rounded-2xl overflow-hidden bg-[#f2e6e1] shadow-2xl border border-[#dac2b9]/50 transition-all duration-700 group">
           <div className="relative w-full aspect-[16/9] min-h-[420px] max-h-[640px] overflow-hidden">
-            <img
+            <ImageWithFallback
               alt="Flurrygraphy Studio Showcase - Creative Design Solutions for Businesses"
               className="w-full h-full object-cover object-center transform transition-transform duration-1000 group-hover:scale-[1.01]"
-              src={STUDIO_META.heroBanner}
+              src={studioMeta.heroBanner}
               loading="eager"
             />
             {/* Elegant warm gradient overlay */}
@@ -58,7 +62,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
 
                 <h1 className="font-serif-display text-3xl sm:text-5xl lg:text-[56px] text-[#fff8f6] drop-shadow-sm font-normal leading-[1.12] tracking-tight">
-                  {STUDIO_META.tagline}
+                  {studioMeta.tagline}
                 </h1>
 
                 <p className="text-sm sm:text-lg text-[#fdf1ec] max-w-2xl font-light drop-shadow leading-relaxed">

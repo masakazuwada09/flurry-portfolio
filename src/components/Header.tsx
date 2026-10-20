@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { STUDIO_META } from '../data/studioData';
+import { StudioMeta } from '../types';
 
 interface HeaderProps {
   onOpenBooking: () => void;
   onOpenBrandGuide: () => void;
   onOpenInquiries: () => void;
+  onOpenAdmin: () => void;
   inquiryCount: number;
+  studioMeta: StudioMeta;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenBooking,
   onOpenBrandGuide,
   onOpenInquiries,
+  onOpenAdmin,
   inquiryCount,
+  studioMeta,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -52,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div className="flex flex-col">
             <span className="font-medium text-sm tracking-[0.2em] uppercase text-[#201a18]">
-              {STUDIO_META.name.split(' ')[0]}
+              {studioMeta.name.split(' ')[0]}
             </span>
             <span className="text-[10px] tracking-[0.18em] uppercase text-[#54433c] font-medium">
               Creative Direction Atelier
@@ -78,26 +82,39 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Right CTA cluster */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          {/* Admin CRM Button */}
+          <button
+            onClick={onOpenAdmin}
+            title="Open Payload CRM & Content Manager (/admin)"
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-full border border-[#dac2b9] text-[#803d1d] bg-[#f8ebe6] hover:bg-[#803d1d] hover:text-white transition-all shadow-xs cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-xs">
+              admin_panel_settings
+            </span>
+            <span className="hidden sm:inline">Payload CRM</span>
+            <span className="sm:hidden">CRM</span>
+          </button>
+
           {/* Brand Style Guide button */}
           <button
             onClick={onOpenBrandGuide}
             title="Inspect Studio Style & Color Palette"
-            className="hidden md:inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wider uppercase px-3 py-2 rounded-full border border-[#dac2b9] text-[#54433c] hover:text-[#803d1d] hover:border-[#803d1d] bg-[#fff8f6] transition-colors"
+            className="hidden lg:inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wider uppercase px-3 py-2 rounded-full border border-[#dac2b9] text-[#54433c] hover:text-[#803d1d] hover:border-[#803d1d] bg-[#fff8f6] transition-colors"
           >
             <span className="w-2 h-2 rounded-full bg-[#803d1d]"></span>
-            <span>Style Atelier</span>
+            <span>Style</span>
           </button>
 
           {/* Book Appointment CTA */}
           <button
             onClick={onOpenBooking}
-            className="inline-flex items-center justify-center bg-[#9e5432] text-[#ffe2d7] hover:bg-[#803d1d] hover:text-white text-[12px] font-semibold tracking-[0.15em] uppercase px-5 py-2.5 rounded-full transition-all duration-300 shadow-[0_4px_16px_rgba(158,84,50,0.18)] hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center justify-center bg-[#9e5432] text-[#ffe2d7] hover:bg-[#803d1d] hover:text-white text-[12px] font-semibold tracking-[0.15em] uppercase px-4 sm:px-5 py-2.5 rounded-full transition-all duration-300 shadow-[0_4px_16px_rgba(158,84,50,0.18)] hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[16px] mr-1.5 hidden sm:inline">
+            <span className="material-symbols-outlined text-[16px] mr-1.5 hidden md:inline">
               calendar_today
             </span>
-            <span>Book Appointment</span>
+            <span>Book</span>
           </button>
 
           {/* Inquiries / Bookings Drawer Toggle */}
@@ -151,6 +168,18 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             ))}
             <div className="pt-3 border-t border-[#dac2b9]/40 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenAdmin();
+                }}
+                className="w-full text-left px-4 py-2.5 text-xs uppercase tracking-wider text-[#803d1d] bg-[#f8ebe6] hover:bg-[#803d1d] hover:text-white border border-[#dac2b9] rounded-xl flex items-center justify-between font-semibold transition-all"
+              >
+                <span>Payload CRM / Admin</span>
+                <span className="material-symbols-outlined text-sm text-[#803d1d]">
+                  admin_panel_settings
+                </span>
+              </button>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);

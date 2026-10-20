@@ -32,6 +32,14 @@ export interface ServiceOption {
   typicalDuration: string;
 }
 
+export type CRMLeadStatus =
+  | 'Pending Discovery'
+  | 'Reviewed'
+  | 'Proposal Sent'
+  | 'Contract Signed'
+  | 'Completed'
+  | 'Archived';
+
 export interface AppointmentInquiry {
   id: string;
   clientName: string;
@@ -43,7 +51,8 @@ export interface AppointmentInquiry {
   estimatedTotal: number;
   projectDescription: string;
   createdAt: string;
-  status: 'Pending Discovery' | 'Reviewed' | 'Scheduled';
+  status: CRMLeadStatus;
+  adminNotes?: string;
 }
 
 export interface ToolMastery {
@@ -66,3 +75,43 @@ export interface Certification {
   icon: string;
   accentColor: string;
 }
+
+export interface StudioMeta {
+  name: string;
+  tagline: string;
+  director: string;
+  directorShort: string;
+  directorBio: string;
+  email: string;
+  turnaround: string;
+  scope: string;
+  heroBanner: string;
+  directorBanner: string;
+  toolsBanner: string;
+  certificatesBanner: string;
+  contactBanner: string;
+  socialHandles: {
+    instagram: string;
+    behance: string;
+    pinterest: string;
+  };
+}
+
+export interface MediaAsset {
+  id: string;
+  title: string;
+  url: string;
+  uploadedAt: string;
+  size?: string;
+  type: 'image' | 'video' | 'vector';
+}
+
+export type AdminTab =
+  | 'dashboard'
+  | 'pages'
+  | 'portfolio'
+  | 'crm'
+  | 'services'
+  | 'media'
+  | 'settings';
+

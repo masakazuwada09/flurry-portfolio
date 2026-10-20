@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { STUDIO_META } from '../data/studioData';
+import { StudioMeta } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
 interface AboutSectionProps {
+  studioMeta: StudioMeta;
   onScheduleDiscovery: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onScheduleDiscovery }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ studioMeta, onScheduleDiscovery }) => {
   const [showManifestoModal, setShowManifestoModal] = useState(false);
 
   return (
@@ -26,12 +28,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScheduleDiscovery 
           </p>
         </div>
 
-        {/* Feature Banner (Image 16) */}
+        {/* Feature Banner */}
         <div className="w-full rounded-2xl overflow-hidden shadow-md bg-[#fff8f6] border border-[#dac2b9]/50 mb-12">
-          <img
+          <ImageWithFallback
             alt="Meet Flurry - Creative Director of Flurrygraphy Design Studio"
             className="w-full h-auto object-cover max-h-[580px]"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuArrNddFXdjgUD0b73vIhhbsdxP9i1V6svAMAoPSynNjFOhG6oYvytlKSFoa5AQVoEvLSh8TmGmB7WzyGfXUA1i-KF-W5fkcsVJuNYAWOlole-eCMRWzYA0b-e0iJFUfHG3HzSvrRJYzzDrkvXtECwof5zMRJoIPQ1TweLzmGAgWVVCUqSE2hWKfD67LNFRx-i8_LGd8gy-I4xzAbrofWbGJNyRf5DGRDlrJyGUiySHFAtUYlqfrR4PGOTPJZIv9VSuIF8"
+            src={studioMeta.directorBanner}
             loading="lazy"
           />
         </div>
@@ -55,7 +57,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onScheduleDiscovery 
               </h3>
 
               <p className="text-sm sm:text-base text-[#54433c] leading-relaxed">
-                Hi there! I am <strong className="font-semibold text-[#201a18]">{STUDIO_META.director}</strong> ({STUDIO_META.directorShort}), Creative Director of {STUDIO_META.name}. Are you looking for a reliable, creative, and passionate graphic designer to build your dream branding and promotional resources? We can help.
+                Hi there! I am <strong className="font-semibold text-[#201a18]">{studioMeta.director}</strong> ({studioMeta.directorShort}), Creative Director of {studioMeta.name}. {studioMeta.directorBio || 'Are you looking for a reliable, creative, and passionate graphic designer to build your dream branding and promotional resources? We can help.'}
               </p>
 
               <p className="text-xs sm:text-sm text-[#54433c] leading-relaxed">

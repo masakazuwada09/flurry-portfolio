@@ -1,24 +1,77 @@
-import { PortfolioItem, ServiceOption, ToolMastery, Certification } from '../types';
+import { PortfolioItem, ServiceOption, ToolMastery, Certification, StudioMeta, MediaAsset } from '../types';
 
-export const STUDIO_META = {
+export const MASTER_SHOWCASE_IMAGE =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCrwCJceP3AT5BsmClFQy_hT4_9FEIwSoB-mCVvG5bUy2Mm9WGcHrpY9JTLpJu1Fb5orRghvmtARFFY-bwPuzhzpIvzrbzUVSGWxapTVXvMXfD5Z2too0wvP_GofyIuYzwTQS44aBf6gd6AkvEELmr0xxshJnrdII--NuddTnF0ljRlDIZzHkJnNnl5Kpk_q2kaF3MviaTQ-PUnIZ84Cb1_cksAjUOCORMStjLOqt63i8Nx8gnX5cCBS4HVp3UauCaCVws';
+
+export const STUDIO_META: StudioMeta = {
   name: 'Flurrygraphy Design Studio',
   tagline: 'Expressive Design Solutions, Tailor Fit to Your Vision.',
   director: 'Fhlori Ann Maye V. Luna',
   directorShort: 'Flurry',
+  directorBio:
+    'Hi there! I am Flurry, the Creative Director of Flurrygraphy Design Studio. Are you looking for a reliable, creative, and passionate graphic designer to build your dream branding and promotional resources? We can help. Our passion is to craft expressive visual identities that empower entrepreneurs and established enterprises alike, employing minimalistic yet deeply artistic techniques.',
   email: 'flurrygraphystudio@gmail.com',
   turnaround: 'Prompt reply within 24 business hours',
   scope: 'Worldwide commissions welcome',
   socialHandles: {
     instagram: '@flurrygraphy',
     behance: 'behance.net/flurrygraphy',
-    pinterest: 'pinterest.com/flurrygraphy'
+    pinterest: 'pinterest.com/flurrygraphy',
   },
-  heroBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrwCJceP3AT5BsmClFQy_hT4_9FEIwSoB-mCVvG5bUy2Mm9WGcHrpY9JTLpJu1Fb5orRghvmtARFFY-bwPuzhzpIvzrbzUVSGWxapTVXvMXfD5Z2too0wvP_GofyIuYzwTQS44aBf6gd6AkvEELmr0xxshJnrdII--NuddTnF0ljRlDIZzHkJnNnl5Kpk_q2kaF3MviaTQ-PUnIZ84Cb1_cksAjUOCORMStjLOqt63i8Nx8gnX5cCBS4HVp3UauCaCVws',
-  directorBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuArrNddFXdjgUD0b73vIhhbsdjgUD0b73vIhhbsdxP9i1V6svAMAoPSynNjFOhG6oYvytlKSFoa5AQVoEvLSh8TmGmB7WzyGfXUA1i-KF-W5fkcsVJuNYAWOlole-eCMRWzYA0b-e0iJFUfHG3HzSvrRJYzzDrkvXtECwof5zMRJoIPQ1TweLzmGAgWVVCUqSE2hWKfD67LNFRx-i8_LGd8gy-I4xzAbrofWbGJNyRf5DGRDlrJyGUiySHFAtUYlqfrR4PGOTPJZIv9VSuIF8',
-  toolsBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC5rZ_gz7uLZkhG9LyVlYhf7KfY911wsHE6V6qy9PCJJBXMVkS8W-eSddQLpBOhgNot65ent3wmn7kZ8EGv871j2CXxEFfYqqCOyIMZI3MWu2Zh_sY-TKBurUSZ9ZqgnoIDOY-zdfsDTFv5jEWugJxBg6vLKA3-926JeDZLZFR-_JU-MVVSyXLx1Uj3fChpYGRmeu5x9Um4Ww6VJwIk9u6jLeG7Ss8eGvaI5Vq4VgVE8_uljCXAQAwRGAVZGcRfX2X5hPU',
-  certificatesBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-Cc_Tj8tH4Qx-lTSm0AZoUX3x1LsegOXGCuLY92ckO47RTwX7KWLW984PlsfUeatDGu_QaUne-FcAeNyHA7DV2xLPBm27zh9ykKSrGOQ1uVGwDtNZEZD3R6U_PYAfsrgjKdjJjedCosCdY9Smnqxk0fU-dhezF5mgtwMJPSjAj4C3ZmQECAvuoh1iSjz2khX7_r69NglOI23c2OJvGCS9tQPn2uMbkXDo1CFvc5SSXxrpV3B94N1xPUwAtkmXA79QNp8',
-  contactBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAuWwaGRVax7_j5L7eBzgJNaovGGObXcBdA7gs-PrfqNfzc95Zp6k0OGD-Pw1bsvx243OH3PZ4AokgbmeHihMmcIf5gpU8guMmJOLDLtsnih6oQ_qQn9n6yZcrey9Qhxh9okcIC7NdI5XQpbKetqhLJmZQepOAPQkC0VDrYqDFB24Bn84ai-HJF_Z0I1N6bvhJSupq0lXYO9MFP7BbMye6WvWk_6Pn_J2hG3Ii1o0rvloQrJaOpc-dCKY4oIhcIFfdWcKg'
+  heroBanner: MASTER_SHOWCASE_IMAGE,
+  directorBanner:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuArrNddFXdjgUD0b73vIhhbsdxP9i1V6svAMAoPSynNjFOhG6oYvytlKSFoa5AQVoEvLSh8TmGmB7WzyGfXUA1i-KF-W5fkcsVJuNYAWOlole-eCMRWzYA0b-e0iJFUfHG3HzSvrRJYzzDrkvXtECwof5zMRJoIPQ1TweLzmGAgWVVCUqSE2hWKfD67LNFRx-i8_LGd8gy-I4xzAbrofWbGJNyRf5DGRDlrJyGUiySHFAtUYlqfrR4PGOTPJZIv9VSuIF8',
+  toolsBanner:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuC5rZ_gz7uLZkhG9LyVlYhf7KfY911wsHE6V6qy9PCJJBXMVkS8W-eSddQLpBOhgNot65ent3wmn7kZ8EGv871j2CXxEFfYqqCOyIMZI3MWu2Zh_sY-TKBurUSZ9ZqgnoIDOY-zdfsDTFv5jEWugJxBg6vLKA3-926JeDZLZFR-_JU-MVVSyXLx1Uj3fChpYGRmeu5x9Um4Ww6VJwIk9u6jLeG7Ss8eGvaI5Vq4VgVE8_uljCXAQAwRGAVZGcRfX2X5hPU',
+  certificatesBanner:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuA-Cc_Tj8tH4Qx-lTSm0AZoUX3x1LsegOXGCuLY92ckO47RTwX7KWLW984PlsfUeatDGu_QaUne-FcAeNyHA7DV2xLPBm27zh9ykKSrGOQ1uVGwDtNZEZD3R6U_PYAfsrgjKdjJjedCosCdY9Smnqxk0fU-dhezF5mgtwMJPSjAj4C3ZmQECAvuoh1iSjz2khX7_r69NglOI23c2OJvGCS9tQPn2uMbkXDo1CFvc5SSXxrpV3B94N1xPUwAtkmXA79QNp8',
+  contactBanner:
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuAuWwaGRVax7_j5L7eBzgJNaovGGObXcBdA7gs-PrfqNfzc95Zp6k0OGD-Pw1bsvx243OH3PZ4AokgbmeHihMmcIf5gpU8guMmJOLDLtsnih6oQ_qQn9n6yZcrey9Qhxh9okcIC7NdI5XQpbKetqhLJmZQepOAPQkC0VDrYqDFB24Bn84ai-HJF_Z0I1N6bvhJSupq0lXYO9MFP7BbMye6WvWk_6Pn_J2hG3Ii1o0rvloQrJaOpc-dCKY4oIhcIFfdWcKg',
 };
+
+export const INITIAL_MEDIA_ASSETS: MediaAsset[] = [
+  {
+    id: 'media-01',
+    title: 'Master Hero Showcase Visual',
+    url: MASTER_SHOWCASE_IMAGE,
+    uploadedAt: 'Oct 19, 2026',
+    size: '1.4 MB',
+    type: 'image',
+  },
+  {
+    id: 'media-02',
+    title: 'Meet Fhlori & Atelier Editorial Banner',
+    url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuArrNddFXdjgUD0b73vIhhbsdxP9i1V6svAMAoPSynNjFOhG6oYvytlKSFoa5AQVoEvLSh8TmGmB7WzyGfXUA1i-KF-W5fkcsVJuNYAWOlole-eCMRWzYA0b-e0iJFUfHG3HzSvrRJYzzDrkvXtECwof5zMRJoIPQ1TweLzmGAgWVVCUqSE2hWKfD67LNFRx-i8_LGd8gy-I4xzAbrofWbGJNyRf5DGRDlrJyGUiySHFAtUYlqfrR4PGOTPJZIv9VSuIF8',
+    uploadedAt: 'Oct 19, 2026',
+    size: '980 KB',
+    type: 'image',
+  },
+  {
+    id: 'media-03',
+    title: 'Software & Creative Tools Infographic',
+    url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC5rZ_gz7uLZkhG9LyVlYhf7KfY911wsHE6V6qy9PCJJBXMVkS8W-eSddQLpBOhgNot65ent3wmn7kZ8EGv871j2CXxEFfYqqCOyIMZI3MWu2Zh_sY-TKBurUSZ9ZqgnoIDOY-zdfsDTFv5jEWugJxBg6vLKA3-926JeDZLZFR-_JU-MVVSyXLx1Uj3fChpYGRmeu5x9Um4Ww6VJwIk9u6jLeG7Ss8eGvaI5Vq4VgVE8_uljCXAQAwRGAVZGcRfX2X5hPU',
+    uploadedAt: 'Oct 19, 2026',
+    size: '1.1 MB',
+    type: 'image',
+  },
+  {
+    id: 'media-04',
+    title: 'Certifications & Official Accreditations Panel',
+    url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-Cc_Tj8tH4Qx-lTSm0AZoUX3x1LsegOXGCuLY92ckO47RTwX7KWLW984PlsfUeatDGu_QaUne-FcAeNyHA7DV2xLPBm27zh9ykKSrGOQ1uVGwDtNZEZD3R6U_PYAfsrgjKdjJjedCosCdY9Smnqxk0fU-dhezF5mgtwMJPSjAj4C3ZmQECAvuoh1iSjz2khX7_r69NglOI23c2OJvGCS9tQPn2uMbkXDo1CFvc5SSXxrpV3B94N1xPUwAtkmXA79QNp8',
+    uploadedAt: 'Oct 19, 2026',
+    size: '860 KB',
+    type: 'image',
+  },
+  {
+    id: 'media-05',
+    title: "Let's Work Together Contact Atelier Banner",
+    url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAuWwaGRVax7_j5L7eBzgJNaovGGObXcBdA7gs-PrfqNfzc95Zp6k0OGD-Pw1bsvx243OH3PZ4AokgbmeHihMmcIf5gpU8guMmJOLDLtsnih6oQ_qQn9n6yZcrey9Qhxh9okcIC7NdI5XQpbKetqhLJmZQepOAPQkC0VDrYqDFB24Bn84ai-HJF_Z0I1N6bvhJSupq0lXYO9MFP7BbMye6WvWk_6Pn_J2hG3Ii1o0rvloQrJaOpc-dCKY4oIhcIFfdWcKg',
+    uploadedAt: 'Oct 19, 2026',
+    size: '1.2 MB',
+    type: 'image',
+  },
+];
+
 
 export const STUDIO_METRICS = [
   {

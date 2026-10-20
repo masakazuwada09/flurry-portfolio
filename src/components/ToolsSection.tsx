@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { STUDIO_META, TOOLS_MASTERY } from '../data/studioData';
 import { ToolMastery } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
-export const ToolsSection: React.FC = () => {
+interface ToolsSectionProps {
+  toolsBanner?: string;
+}
+
+export const ToolsSection: React.FC<ToolsSectionProps> = ({
+  toolsBanner = STUDIO_META.toolsBanner,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
   const [activeTool, setActiveTool] = useState<ToolMastery | null>(TOOLS_MASTERY[0]);
 
   const filteredTools = TOOLS_MASTERY.filter((tool) => {
@@ -90,13 +98,13 @@ export const ToolsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Visual Toolkit Infographic (Image 19) */}
+          {/* Visual Toolkit Infographic */}
           <div className="lg:col-span-7 space-y-6">
             <div className="rounded-2xl overflow-hidden shadow-lg bg-[#fff8f6] border border-[#dac2b9]/60">
-              <img
+              <ImageWithFallback
                 alt="Flurrygraphy Design Tools - Canva, Adobe Photoshop, Illustrator, InDesign, CorelDraw, Procreate, Filmora, CapCut"
                 className="w-full h-auto object-cover"
-                src={STUDIO_META.toolsBanner}
+                src={toolsBanner}
                 loading="lazy"
               />
             </div>

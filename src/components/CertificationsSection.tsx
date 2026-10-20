@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { CERTIFICATIONS, STUDIO_META } from '../data/studioData';
 import { Certification } from '../types';
+import { ImageWithFallback } from './common/ImageWithFallback';
 
-export const CertificationsSection: React.FC = () => {
+interface CertificationsSectionProps {
+  certificatesBanner?: string;
+}
+
+export const CertificationsSection: React.FC<CertificationsSectionProps> = ({
+  certificatesBanner = STUDIO_META.certificatesBanner,
+}) => {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
   return (
@@ -21,12 +28,12 @@ export const CertificationsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Main Certificates Showcase Graphic (Image 15) */}
+        {/* Main Certificates Showcase Graphic */}
         <div className="w-full rounded-2xl overflow-hidden shadow-md bg-[#fdf1ec] border border-[#dac2b9]/50 mb-12">
-          <img
+          <ImageWithFallback
             alt="Official Certifications: Microsoft Office Specialist, DICT digitaljobsPH Graphic Design Medalist, Adobe Creative Educator, Canva Essentials"
             className="w-full h-auto object-cover"
-            src={STUDIO_META.certificatesBanner}
+            src={certificatesBanner}
             loading="lazy"
           />
         </div>
