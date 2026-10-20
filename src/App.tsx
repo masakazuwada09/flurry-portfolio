@@ -15,6 +15,7 @@ import { AppointmentsDrawer } from './components/AppointmentsDrawer';
 import { BrandGuideModal } from './components/BrandGuideModal';
 import { Footer } from './components/Footer';
 import { AdminLayout } from './components/admin/AdminLayout';
+import { AdminLogin } from './components/admin/AdminLogin';
 import {
   AppointmentInquiry,
   PortfolioItem,
@@ -132,6 +133,64 @@ export default function App() {
   const [isAppointmentsDrawerOpen, setIsAppointmentsDrawerOpen] = useState(false);
   const [isBrandGuideModalOpen, setIsBrandGuideModalOpen] = useState(false);
   const [preselectedServiceId, setPreselectedServiceId] = useState<string | null>(null);
+
+  // CRM Authentication state (default username: admin, password: flurrygraphy)
+  const [adminCredentials, setAdminCredentials] = useState<{ username: string; password: string }>(() => {
+    try {
+      const saved = localStorage.getItem('flurry_crm_credentials');
+      return saved ? JSON.parse(saved) : { username: 'admin', password: 'flurrygraphy' };
+    } catch {
+      return { username: 'admin', password: 'flurrygraphy' };
+    }
+  });
+
+  const [isCrmAuthenticated, setIsCrmAuthenticated] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('flurry_crm_auth') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleLoginSuccess = () => {
+    setIsCrmAuthenticated(true);
+    try {
+      localStorage.setItem('flurry_crm_auth', 'true');
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsCrmAuthenticated(false);
+    try {
+      localStorage.removeItem('flurry_crm_auth');
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
+  const handleUpdatePassword = (newPassword: string) => {
+    setAdminCredentials((prev) => {
+      const updated = { ...prev, password: newPassword };
+      try {
+        localStorage.setItem('flurry_crm_credentials', JSON.stringify(updated));
+      } catch (e) {
+        console.warn(e);
+      }
+      return updated;
+    });
+  };
+
+  const handleResetPasswordToDefault = () => {
+    const def = { username: 'admin', password: 'flurrygraphy' };
+    setAdminCredentials(def);
+    try {
+      localStorage.setItem('flurry_crm_credentials', JSON.stringify(def));
+    } catch (e) {
+      console.warn(e);
+    }
+  };
 
   // Sync route changes
   useEffect(() => {
@@ -293,11 +352,25 @@ export default function App() {
 
   // IF ADMIN VIEW IS ACTIVE
   if (isAdminView) {
+    if (!isCrmAuthenticated) {
+      return (
+        <AdminLogin
+          onLoginSuccess={handleLoginSuccess}
+          onExitAdmin={navigateExitAdmin}
+          getValidCredentials={() => adminCredentials}
+        />
+      );
+    }
+
     return (
       <AdminLayout
         currentTab={adminTab}
         onChangeTab={setAdminTab}
         onExitAdmin={navigateExitAdmin}
+        onLogout={handleLogout}
+        adminCredentials={adminCredentials}
+        onUpdatePassword={handleUpdatePassword}
+        onResetPasswordToDefault={handleResetPasswordToDefault}
         studioMeta={studioMeta}
         onSaveMeta={setStudioMeta}
         portfolioItems={portfolioItems}
